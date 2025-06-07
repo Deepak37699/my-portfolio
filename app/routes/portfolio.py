@@ -110,6 +110,7 @@ async def skills(request: Request, templates: Jinja2Templates = Depends(get_temp
         
         return templates.TemplateResponse("skills.html", {
             "request": request,
+            "skills": all_skills,  # Add the flat list that the template expects
             "skills_by_category": skills_by_category,
             "page_title": "Skills"
         })
