@@ -1,0 +1,76 @@
+{
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "Portfolio Website",
+      "description": "Personal portfolio built with FastAPI and Jinja2 templates, featuring JSON-based storage and admin interface. Includes responsive design, contact forms, and dynamic content management.",
+      "technologies": ["Python", "FastAPI", "Jinja2", "HTML/CSS", "JavaScript", "JSON"],
+      "image": "portfolio.jpg",
+      "github_url": "https://github.com/deepakyadav/portfolio",
+      "live_url": "https://deepakyadav.dev",
+      "featured": true,
+      "created_date": "2024-01-15T10:00:00",
+      "status": "Completed"
+    },
+    {
+      "id": "project-2",
+      "title": "E-Commerce API Platform",
+      "description": "RESTful API for e-commerce platform with user authentication, product management, order processing, and payment integration. Built with FastAPI and PostgreSQL.",
+      "technologies": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "JWT", "Stripe API", "Docker"],
+      "image": "ecommerce-api.jpg",
+      "github_url": "https://github.com/deepakyadav/ecommerce-api",
+      "live_url": "https://api.ecomstore.com",
+      "featured": true,
+      "created_date": "2023-09-20T14:30:00",
+      "status": "Completed"
+    },
+    {
+      "id": "project-3",
+      "title": "Task Management Dashboard",
+      "description": "Modern task management web application with real-time updates, team collaboration features, and analytics dashboard. Built with React frontend and FastAPI backend.",
+      "technologies": ["Python", "FastAPI", "React", "TypeScript", "WebSocket", "MongoDB", "Redis"],
+      "image": "task-dashboard.jpg",
+      "github_url": "https://github.com/deepakyadav/task-manager",
+      "live_url": "https://taskflow.app",
+      "featured": true,
+      "created_date": "2023-12-05T09:15:00",
+      "status": "Completed"
+    },
+    {
+      "id": "project-4",
+      "title": "Weather Analytics API",
+      "description": "Weather data aggregation and analytics API that collects data from multiple sources, processes historical weather patterns, and provides forecasting insights.",
+      "technologies": ["Python", "FastAPI", "Pandas", "NumPy", "scikit-learn", "PostgreSQL", "Celery"],
+      "image": "weather-api.jpg",
+      "github_url": "https://github.com/deepakyadav/weather-analytics",
+      "live_url": "https://weatherinsights.api.com",
+      "featured": false,
+      "created_date": "2023-07-10T16:45:00",
+      "status": "Completed"
+    },
+    {
+      "id": "project-5",
+      "title": "Social Media Content Scheduler",
+      "description": "Automated social media content scheduling platform with multi-platform support, analytics tracking, and AI-powered content suggestions.",
+      "technologies": ["Python", "FastAPI", "React", "OpenAI API", "Twitter API", "Facebook API", "PostgreSQL"],
+      "image": "social-scheduler.jpg",
+      "github_url": "https://github.com/deepakyadav/social-scheduler",
+      "live_url": "https://socialflow.com",
+      "featured": false,
+      "created_date": "2024-03-12T11:20:00",
+      "status": "In Progress"
+    },
+    {
+      "id": "project-6",
+      "title": "Real Estate Property Finder",
+      "description": "Property search and listing platform with advanced filtering, map integration, virtual tours, and mortgage calculator features.",
+      "technologies": ["Python", "Django", "PostgreSQL", "Google Maps API", "Elasticsearch", "Vue.js"],
+      "image": "property-finder.jpg",
+      "github_url": "https://github.com/deepakyadav/property-finder",
+      "live_url": "https://propfinder.co.in",
+      "featured": false,
+      "created_date": "2022-11-18T13:00:00",
+      "status": "Completed"
+    }
+  ]
+}

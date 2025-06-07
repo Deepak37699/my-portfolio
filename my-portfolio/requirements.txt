@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+jinja2
+pydantic
+python-multipart
+passlib[bcrypt]
+httpx
+pytest
+pytest-asyncio
+python-dotenv

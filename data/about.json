@@ -1,0 +1,195 @@
+{
+  "about": {
+    "name": "Deepak Yadav",
+    "title": "Full Stack Developer & Software Engineer",
+    "bio": "Passionate full-stack developer with 5+ years of experience in Python, FastAPI, and modern web technologies. I specialize in building scalable web applications, RESTful APIs, and data-driven solutions. My expertise spans from backend development to frontend technologies, with a strong focus on clean code, performance optimization, and user experience.",
+    "location": "Mumbai, India",
+    "email": "deepak.yadav@example.com",
+    "phone": "+91-9876543210",
+    "linkedin": "https://linkedin.com/in/deepakyadav",
+    "github": "https://github.com/deepakyadav",
+    "twitter": "https://twitter.com/deepakyadav",
+    "resume_url": "https://example.com/deepak-yadav-resume.pdf",
+    "profile_image": "profile.jpg",
+    "years_experience": 5,
+    "education": [
+      {
+        "id": 1,
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "year": "2019",
+        "grade": "8.5 CGPA",
+        "description": "Graduated with honors, specializing in software engineering and data structures."
+      },
+      {
+        "id": 2,
+        "degree": "Higher Secondary Certificate",
+        "institution": "St. Xavier's College",
+        "year": "2015",
+        "grade": "92%",
+        "description": "Science stream with Computer Science as main subject."
+      },
+      {
+        "id": "739e082a-c69e-4100-a5bc-f3b797f7dfe7",
+        "degree": "Bachelor of Computer Science",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": null,
+        "field_of_study": null,
+        "description": "Test education record for debugging",
+        "created_date": "2025-06-04 19:01:31.385794"
+      },
+      {
+        "id": "dd660739-f569-452a-bc0d-bec8de6f13eb",
+        "degree": "Master of Science in Computer Science",
+        "institution": "Tech University",
+        "year": "2024",
+        "grade": "A",
+        "field_of_study": "Artificial Intelligence",
+        "description": "Specialized in AI and Machine Learning with focus on deep learning algorithms.",
+        "created_date": "2025-06-04 19:02:18.943773"
+      },
+      {
+        "id": "9b4ac7f9-d18c-45c8-b4d5-f87174f933ad",
+        "degree": "Test Degree",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": null,
+        "field_of_study": null,
+        "description": null,
+        "created_date": "2025-06-04 19:03:31.630634"
+      },
+      {
+        "id": "25c668cf-06c0-4707-8474-6b004d6dfd90",
+        "degree": "Bachelor of Science",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": null,
+        "field_of_study": null,
+        "description": "Test education record",
+        "created_date": "2025-06-04 19:05:39.678343"
+      },
+      {
+        "id": "41656d14-9323-40c6-867e-c313992bbbf0",
+        "degree": "Test Degree",
+        "institution": "Test Uni",
+        "year": "2023",
+        "grade": null,
+        "field_of_study": null,
+        "description": null,
+        "created_date": "2025-06-04 19:06:12.631517"
+      },
+      {
+        "id": "be6b6f76-8307-4db4-a902-0682f92dd937",
+        "degree": "Bachelor of Computer Science",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": "First Class",
+        "field_of_study": null,
+        "description": "Test education record created by automation script",
+        "created_date": "2025-06-04 19:36:42.061146"
+      },
+      {
+        "id": "dd3f284d-7a90-415c-af9e-fbaddf23b6a3",
+        "degree": "Bachelor of Computer Science",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": "First Class",
+        "field_of_study": null,
+        "description": "Test education record",
+        "created_date": "2025-06-04 19:51:23.779328"
+      },
+      {
+        "id": "c403b103-23cf-45da-b011-115539283547",
+        "degree": "Bachelor of Computer Science",
+        "institution": "Test University",
+        "year": "2023",
+        "grade": "First Class",
+        "field_of_study": null,
+        "description": "Test education record created by automation script",
+        "created_date": "2025-06-04 19:53:23.813414"
+      },
+      {
+        "id": "9f78792b-0715-44f2-b04a-c27281a45aeb",
+        "degree": "vsv",
+        "institution": "avz",
+        "year": "2345",
+        "grade": "8",
+        "field_of_study": null,
+        "description": "sgcs",
+        "created_date": "2025-06-04 19:55:03.109550"
+      }
+    ],
+    "experience": [
+      {
+        "id": 1,
+        "job_title": "Senior Full Stack Developer",
+        "company": "TechCorp Solutions",
+        "start_date": "2022-03",
+        "end_date": null,
+        "is_current": true,
+        "location": "Mumbai, India",
+        "employment_type": "Full-time",
+        "description": "Leading development of enterprise web applications using Python, FastAPI, and React. Mentoring junior developers and implementing best practices for code quality and deployment."
+      },
+      {
+        "id": 2,
+        "job_title": "Full Stack Developer",
+        "company": "StartupXYZ",
+        "start_date": "2020-06",
+        "end_date": "2022-02",
+        "is_current": false,
+        "location": "Mumbai, India",
+        "employment_type": "Full-time",
+        "description": "Developed and maintained multiple web applications using Django, PostgreSQL, and Vue.js. Collaborated with cross-functional teams to deliver high-quality software solutions."
+      },
+      {
+        "id": 3,
+        "job_title": "Junior Python Developer",
+        "company": "DevCompany Ltd",
+        "start_date": "2019-07",
+        "end_date": "2020-05",
+        "is_current": false,
+        "location": "Mumbai, India",
+        "employment_type": "Full-time",
+        "description": "Started career developing REST APIs and data processing applications. Gained experience in Python, Flask, and database management."
+      }
+    ],
+    "certifications": [
+      {
+        "id": 1,
+        "name": "AWS Certified Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "date": "2023-08-15",
+        "expiry_date": "2026-08-15",
+        "credential_id": "AWS-SA-12345",
+        "credential_url": "https://aws.amazon.com/certification/verify/",
+        "description": "Demonstrates expertise in designing distributed systems on AWS platform."
+      },
+      {
+        "id": 2,
+        "name": "Python for Data Science",
+        "issuer": "IBM",
+        "date": "2022-12-10",
+        "expiry_date": null,
+        "credential_id": "IBM-PDS-67890",
+        "credential_url": "https://ibm.com/training/verify/",
+        "description": "Comprehensive certification covering Python libraries for data analysis and machine learning."
+      }
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "proficiency": "Fluent"
+      },
+      {
+        "language": "Hindi",
+        "proficiency": "Native"
+      },
+      {
+        "language": "Marathi",
+        "proficiency": "Conversational"
+      }
+    ]
+  }
+}
