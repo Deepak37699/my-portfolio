@@ -1037,11 +1037,10 @@ function showQuickActionMenu() {
         item.innerHTML = `
             <i class="${action.icon}" style="margin-right: 12px; width: 20px;"></i>
             <span>${action.text}</span>
-        `;
-          item.addEventListener('mouseenter', () => {
-            // Use theme-aware hover color
-            const isDark = document.body.classList.contains('dark-theme') || 
-                          document.documentElement.classList.contains('dark-theme');
+        `;        item.addEventListener('mouseenter', () => {
+            // Use theme-aware hover color with better detection
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+                          document.body.classList.contains('dark-theme');
             item.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
         });
         item.addEventListener('mouseleave', () => {
