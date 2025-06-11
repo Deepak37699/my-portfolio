@@ -1005,13 +1005,15 @@ function showQuickActionMenu() {
         position: fixed;
         bottom: 100px;
         right: 30px;
-        background: white;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
         border-radius: 12px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         padding: 16px;
         z-index: 1001;
         min-width: 200px;
         animation: slideInUp 0.3s ease-out;
+        color: var(--text-primary);
     `;
     
     const actions = [
@@ -1036,9 +1038,11 @@ function showQuickActionMenu() {
             <i class="${action.icon}" style="margin-right: 12px; width: 20px;"></i>
             <span>${action.text}</span>
         `;
-        
-        item.addEventListener('mouseenter', () => {
-            item.style.backgroundColor = '#f1f5f9';
+          item.addEventListener('mouseenter', () => {
+            // Use theme-aware hover color
+            const isDark = document.body.classList.contains('dark-theme') || 
+                          document.documentElement.classList.contains('dark-theme');
+            item.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
         });
         item.addEventListener('mouseleave', () => {
             item.style.backgroundColor = 'transparent';
