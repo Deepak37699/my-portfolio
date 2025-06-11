@@ -1,3 +1,58 @@
+/* Critical CSS - Force immediate theme variable loading */
+html[data-theme="light"] {
+    --bg-primary: #ffffff !important;
+    --bg-secondary: #f8fafc !important;
+    --bg-tertiary: #f1f5f9 !important;
+    --text-primary: #1e293b !important;
+    --text-secondary: #64748b !important;
+    --text-muted: #94a3b8 !important;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    --gradient-dark: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+}
+
+html[data-theme="dark"] {
+    --bg-primary: #0f172a !important;
+    --bg-secondary: #1e293b !important;
+    --bg-tertiary: #334155 !important;
+    --text-primary: #f8fafc !important;
+    --text-secondary: #cbd5e1 !important;
+    --text-muted: #64748b !important;
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+    --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+/* Force body and html to immediately apply theme */
+html, body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Immediate hero section styling to prevent flash */
+.hero-section {
+    background: var(--gradient-primary) !important;
+    color: white !important;
+}
+
+/* Browser-specific immediate fixes */
+.browser-chrome .hero-section {
+    background: var(--gradient-primary) !important;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+}
+
+.browser-firefox .hero-section {
+    background: var(--gradient-primary) !important;
+    -moz-background-size: cover !important;
+    background-size: cover !important;
+}
+
+.browser-safari .hero-section {
+    background: var(--gradient-primary) !important;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+}
+
 /* Custom Portfolio Styles - Modern Design System */
 
 :root {
@@ -24,12 +79,11 @@
     /* Borders */
     --border-color: #e2e8f0;
     --border-hover: #cbd5e1;
-    
-    /* Gradients */
+      /* Gradients */
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-dark: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    --gradient-dark: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -447,7 +501,7 @@ h6 { font-size: 1rem; }
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: fadeInUp 1s ease-out;
+    /* DISABLED: animation: fadeInUp 1s ease-out; */
 }
 
 .hero-subtitle {
@@ -553,6 +607,18 @@ h6 { font-size: 1rem; }
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+}
+
+/* Fade in animation classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Modern Card Components */
@@ -927,179 +993,242 @@ h6 { font-size: 1rem; }
     color: white;
 }
 
-/* Override Bootstrap color utilities to use theme variables */
-.text-muted {
-    color: var(--text-secondary) !important;
+/* Browser-specific fixes for theme consistency */
+
+/* Chrome-specific fixes */
+.browser-chrome {
+    /* Ensure proper CSS variable inheritance in Chrome */
+    --webkit-text-size-adjust: 100%;
 }
 
-.text-light {
-    color: var(--text-primary) !important;
+.browser-chrome .hero-section {
+    /* Force Chrome to properly render gradients */
+    will-change: background;
+    transform: translateZ(0);
 }
 
-.bg-light {
-    background-color: var(--bg-secondary) !important;
+/* Firefox-specific fixes */
+.browser-firefox {
+    /* Firefox CSS variable handling */
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.bg-white {
-    background-color: var(--bg-primary) !important;
+.browser-firefox .theme-toggle-btn {
+    /* Firefox button rendering */
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.bg-dark {
-    background-color: var(--bg-tertiary) !important;
+/* Safari-specific fixes */
+.browser-safari {
+    /* Safari webkit optimizations */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Force override of any remaining hardcoded colors in templates */
-.about-hero, .contact-hero, .skills-hero, .projects-hero {
+.browser-safari .modern-navbar {
+    /* Safari backdrop-filter fix */
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+/* Force CSS variable recalculation on theme change */
+[data-theme="dark"] * {
+    /* Ensure all elements inherit dark theme variables */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] * {
+    /* Ensure all elements inherit light theme variables */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Cross-browser gradient consistency */
+.hero-section,
+.cta-section {
+    /* Ensure gradients render consistently across browsers */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Force repaint for theme changes */
+.theme-transitioning {
+    /* Trigger browser repaint for smooth theme transitions */
+    transform: translateZ(0);
+    will-change: auto;
+}
+
+/* CSS Variable fallbacks for older browsers */
+:root {
+    /* Fallback colors in case CSS variables fail */
+    color: #1e293b;
+    background-color: #ffffff;
+}
+
+[data-theme="dark"]:root {
+    color: #f8fafc;
+    background-color: #0f172a;
+}
+
+/* !important overrides for stubborn browser differences */
+.hero-section {
     background: var(--gradient-primary) !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
-.info-card, .contact-form, .skill-card, .project-card {
-    background: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-color) !important;
-}
-
-.profile-image {
+[data-theme="dark"] .hero-section {
     background: var(--gradient-primary) !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
 }
 
-/* Override hardcoded text colors */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-primary) !important;
+/* Cache-busting animation to force re-render */
+@keyframes theme-refresh {
+    0% { opacity: 0.99; }
+    100% { opacity: 1; }
 }
 
-p, span, div {
-    color: inherit !important;
+.theme-transitioning {
+    animation: theme-refresh 0.3s ease-out;
 }
 
-.text-secondary, .lead {
-    color: var(--text-secondary) !important;
+/* Section loading states */
+.section-loading {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
 
-.text-muted {
-    color: var(--text-muted) !important;
+.section-loaded {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Form elements override */
-.form-control, input, textarea, select {
-    background-color: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-color) !important;
+/* Responsive adjustments for CTA section */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 60px 0;
+    }
+    
+    .cta-title {
+        font-size: 2rem;
+    }
+    
+    .cta-description {
+        font-size: 1.1rem;
+    }
+    
+    .cta-section .btn {
+        width: 100%;
+        margin-bottom: 1rem;
+        justify-content: center;
+    }
 }
 
-.form-control:focus {
-    border-color: var(--primary-color) !important;
-    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
-}
-
-/* Button overrides */
-.btn-primary {
+/* FORCE CTA SECTION VISIBILITY - HIGHEST PRIORITY */
+.cta-section {
     background: var(--gradient-primary) !important;
-    border-color: var(--primary-color) !important;
+    color: white !important;
+    min-height: 400px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.cta-section .fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+.cta-section .fade-in.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+.cta-section * {
+    color: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.cta-section .cta-title {
+    color: white !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.cta-section .cta-description {
+    color: white !important;
+    font-size: 1.2rem !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.cta-section .btn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     color: white !important;
 }
 
-.btn-secondary {
-    background: var(--bg-secondary) !important;
-    border-color: var(--border-color) !important;
-    color: var(--text-primary) !important;
-}
-
-/* Section background overrides */
-section {
-    background-color: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-}
-
-section.py-5:nth-child(even) {
-    background-color: var(--bg-secondary) !important;
-}
-
-/* Contact and form specific overrides */
-.contact-item, .experience-item, .cert-item {
-    background: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-color) !important;
-}
-
-.contact-icon {
+/* ULTIMATE CTA SECTION FIX - FINAL OVERRIDE */
+section.cta-section {
     background: var(--gradient-primary) !important;
+    padding: 100px 0 !important;
+    min-height: 400px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-/* Tech item and skill overrides */
-.tech-item, .skill-progress {
-    background: var(--bg-secondary) !important;
-    color: var(--text-primary) !important;
+section.cta-section h2.cta-title,
+section.cta-section p.cta-description,
+section.cta-section div,
+section.cta-section a {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
 }
 
-.skill-progress-bar {
-    background: var(--gradient-primary) !important;
+section.cta-section a.btn {
+    display: inline-flex !important;
 }
 
-/* Social links theme override */
-.social-link {
-    background: var(--bg-tertiary) !important;
-    color: var(--text-primary) !important;
+section.cta-section .fade-in {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+    transition: none !important;
 }
 
-.social-link:hover {
-    background: var(--primary-color) !important;
-    color: white !important;
+/* Force text visibility */
+.cta-section h2 {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 1.5rem !important;
 }
 
-/* Accordion and FAQ overrides */
-.accordion-button {
-    background-color: var(--bg-secondary) !important;
-    color: var(--text-primary) !important;
+.cta-section p {
+    font-size: 1.2rem !important;
+    color: #ffffff !important;
+    margin-bottom: 2rem !important;
 }
 
-.accordion-body {
-    background-color: var(--bg-primary) !important;
-    color: var(--text-secondary) !important;
-}
-
-/* Ensure gradients use theme variables */
-[style*="linear-gradient"] {
-    background: var(--gradient-primary) !important;
-}
-
-/* Override any remaining hardcoded colors */
-[style*="#667eea"], [style*="#764ba2"], [style*="#3498db"], [style*="#2980b9"], [style*="#2c3e50"] {
-    background: var(--gradient-primary) !important;
-    color: var(--text-primary) !important;
-}
-
-/* Bootstrap Card overrides for dark mode */
-.card {
-    background: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-color) !important;
-    transition: all 0.3s ease;
-}
-
-.card-body {
-    color: var(--text-primary) !important;
-}
-
-.card-title {
-    color: var(--text-primary) !important;
-}
-
-.card-text {
-    color: var(--text-secondary) !important;
-}
-
-.card:hover {
-    border-color: var(--primary-color) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-}
-
-/* Fix for skill distribution cards specifically */
-.card .text-muted {
-    color: var(--text-muted) !important;
-}
-
-.card small.text-muted {
-    color: var(--text-muted) !important;
+/* Ensure buttons are visible */
+.cta-section .btn-primary-custom,
+.cta-section .btn-outline-custom {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    padding: 0.75rem 2rem !important;
+    margin: 0.5rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
 }

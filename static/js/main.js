@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme toggle first (most important)
     initThemeToggle();
     
-    // Initialize other functionality
-    initNavigation();
+    // Initialize other functionality    initNavigation();
     initAnimations();
     initSkillBars();
     initContactForm();
@@ -17,10 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingScreen();
     initModernEffects();
     initParticleBackground();
-    initTypingAnimation();
+    initTypingAnimation(); // REACTIVATED: For hero subtitle typing effect only
     initCounterAnimation();
     initMouseTrail();
     initFAB();
+    initProgressiveLoading();
     
     console.log('✅ Portfolio JavaScript loaded successfully!');
 });
@@ -114,8 +114,7 @@ function initModernEffects() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         cardObserver.observe(card);
     });
-    
-    // Parallax effect for hero section
+      // Parallax effect for hero section
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) {
         window.addEventListener('scroll', () => {
@@ -124,24 +123,24 @@ function initModernEffects() {
             heroSection.style.transform = `translateY(${parallax}px)`;
         });
     }
-      // Typing effect for hero title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle && !heroTitle.dataset.typed) {
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        heroTitle.dataset.typed = 'true';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
-        
-        setTimeout(typeWriter, 1000);
-    }
+      // DISABLED: Typing effect for hero title to make heading static
+    // const heroTitle = document.querySelector('.hero-title');
+    // if (heroTitle && !heroTitle.dataset.typed) {
+    //     const originalText = heroTitle.textContent;
+    //     heroTitle.textContent = '';
+    //     heroTitle.dataset.typed = 'true';
+    //     
+    //     let i = 0;
+    //     const typeWriter = () => {
+    //         if (i < originalText.length) {
+    //             heroTitle.textContent += originalText.charAt(i);
+    //             i++;
+    //             setTimeout(typeWriter, 100);
+    //         }
+    //     };
+    //     
+    //     setTimeout(typeWriter, 1000);
+    // }
     
     // Scroll progress indicator
     const scrollProgress = document.getElementById('scrollProgress');
@@ -224,11 +223,11 @@ function initNavigation() {
 
 // Landing page specific effects
 function initLandingPageEffects() {
-    // Typing effect for hero title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle && heroTitle.textContent.includes('Deepak Yadav')) {
-        typeWriter(heroTitle);
-    }
+    // DISABLED: Typing effect for hero title to make heading static
+    // const heroTitle = document.querySelector('.hero-title');
+    // if (heroTitle && heroTitle.textContent.includes('Deepak Yadav')) {
+    //     typeWriter(heroTitle);
+    // }
     
     // Parallax effect for floating shapes
     initParallaxShapes();
@@ -316,15 +315,17 @@ function initAnimations() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
+                entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.skill-card, .project-card, .stats-item');
+    // Observe all fade-in elements including CTA section
+    const animateElements = document.querySelectorAll('.fade-in, .skill-card, .project-card, .stats-item');
     animateElements.forEach(el => observer.observe(el));
+    
+    console.log('✅ Animation observer initialized for', animateElements.length, 'elements');
 }
 
 // Skill progress bars
@@ -638,34 +639,34 @@ function initEasterEggs() {
         }
     });
     
-    // Click counter easter egg
-    let clickCount = 0;
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.addEventListener('click', () => {
-            clickCount++;
-            if (clickCount === 7) {
-                heroTitle.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff)';
-                heroTitle.style.backgroundSize = '400% 400%';
-                heroTitle.style.animation = 'rainbow 2s ease infinite';
-                heroTitle.style.webkitBackgroundClip = 'text';
-                heroTitle.style.webkitTextFillColor = 'transparent';
-                
-                // Add rainbow animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes rainbow {
-                        0% { background-position: 0% 50%; }
-                        50% { background-position: 100% 50%; }
-                        100% { background-position: 0% 50%; }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                clickCount = 0;
-            }
-        });
-    }
+    // DISABLED: Click counter easter egg to prevent dynamic title changes
+    // let clickCount = 0;
+    // const heroTitle = document.querySelector('.hero-title');
+    // if (heroTitle) {
+    //     heroTitle.addEventListener('click', () => {
+    //         clickCount++;
+    //         if (clickCount === 7) {
+    //             heroTitle.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff)';
+    //             heroTitle.style.backgroundSize = '400% 400%';
+    //             heroTitle.style.animation = 'rainbow 2s ease infinite';
+    //             heroTitle.style.webkitBackgroundClip = 'text';
+    //             heroTitle.style.webkitTextFillColor = 'transparent';
+    //             
+    //             // Add rainbow animation
+    //             const style = document.createElement('style');
+    //             style.textContent = `
+    //                 @keyframes rainbow {
+    //                     0% { background-position: 0% 50%; }
+    //                     50% { background-position: 100% 50%; }
+    //                     100% { background-position: 0% 50%; }
+    //                 }
+    //             `;
+    //             document.head.appendChild(style);
+    //             
+    //             clickCount = 0;
+    //         }
+    //     });
+    // }
 }
 
 function activateEasterEgg() {

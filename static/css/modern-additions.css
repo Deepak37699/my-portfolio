@@ -292,7 +292,7 @@
     background-clip: text;
 }
 
-/* Typing text cursor effect */
+/* Typing text cursor effect - REACTIVATED for hero subtitle only */
 .typing-text::after {
     content: '|';
     font-weight: 100;
@@ -487,9 +487,19 @@
 
 /* Modern Footer Styles */
 .modern-footer {
-    background: var(--gradient-dark) !important;
+    background: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+/* Dark theme footer */
+[data-theme="dark"] .modern-footer {
+    background: var(--gradient-dark) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-inverse);
 }
 
 .modern-footer::before {
@@ -502,12 +512,57 @@
     background: var(--gradient-primary);
 }
 
+/* Footer text colors */
+.footer-description {
+    color: var(--text-secondary);
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+}
+
+.footer-heading {
+    color: var(--text-primary);
+}
+
+.footer-tech {
+    color: var(--text-muted);
+}
+
+.footer-social-link {
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+[data-theme="dark"] .footer-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .footer-copyright {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .footer-heading {
+    color: var(--text-inverse);
+}
+
+[data-theme="dark"] .footer-tech {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .footer-social-link {
+    color: var(--text-inverse);
+}
+
+/* Social links hover effects */
 .social-links a {
     transition: all 0.3s ease;
     display: inline-block;
 }
 
-.social-links a:hover {
+.social-links a:hover,
+.footer-social-link:hover {
     transform: translateY(-3px);
     color: var(--primary-color) !important;
 }

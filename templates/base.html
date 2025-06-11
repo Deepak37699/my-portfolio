@@ -11,15 +11,39 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', path='/css/modern-additions.css') }}" rel="stylesheet">
-      <!-- Theme initialization script (inline for faster theme loading) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">    <!-- Custom CSS with cache busting -->
+    <link href="{{ url_for('static', path='/css/style.css') }}?v=2.0" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/modern-additions.css') }}?v=2.0" rel="stylesheet">    <!-- Theme initialization script (inline for faster theme loading) -->
     <script>
         // Initialize theme immediately to prevent flash
-        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        (function() {
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Ensure theme is applied before CSS loads
+            if (savedTheme === 'dark') {
+                document.documentElement.style.setProperty('--bg-primary', '#0f172a');
+                document.documentElement.style.setProperty('--text-primary', '#f8fafc');
+                document.documentElement.style.setProperty('--bg-secondary', '#1e293b');
+                document.documentElement.style.setProperty('--text-secondary', '#cbd5e1');
+                document.documentElement.style.setProperty('--gradient-primary', 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)');
+            } else {
+                document.documentElement.style.setProperty('--bg-primary', '#ffffff');
+                document.documentElement.style.setProperty('--text-primary', '#1e293b');
+                document.documentElement.style.setProperty('--bg-secondary', '#f8fafc');
+                document.documentElement.style.setProperty('--text-secondary', '#64748b');
+                document.documentElement.style.setProperty('--gradient-primary', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+            }
+            
+            // Add browser class for CSS targeting
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+            const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+            
+            if (isChrome) document.documentElement.classList.add('browser-chrome');
+            if (isFirefox) document.documentElement.classList.add('browser-firefox');
+            if (isSafari) document.documentElement.classList.add('browser-safari');
+        })();
         
         // Register service worker
         if ('serviceWorker' in navigator) {
@@ -93,10 +117,27 @@
                             // Add transition class for smooth animation
                             htmlEl.classList.add('theme-transitioning');
                             
+                            // Force immediate CSS variable updates
+                            if (nextTheme === 'dark') {
+                                htmlEl.style.setProperty('--bg-primary', '#0f172a');
+                                htmlEl.style.setProperty('--text-primary', '#f8fafc');
+                                htmlEl.style.setProperty('--bg-secondary', '#1e293b');
+                                htmlEl.style.setProperty('--text-secondary', '#cbd5e1');
+                                htmlEl.style.setProperty('--gradient-primary', 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)');
+                            } else {
+                                htmlEl.style.setProperty('--bg-primary', '#ffffff');
+                                htmlEl.style.setProperty('--text-primary', '#1e293b');
+                                htmlEl.style.setProperty('--bg-secondary', '#f8fafc');
+                                htmlEl.style.setProperty('--text-secondary', '#64748b');
+                                htmlEl.style.setProperty('--gradient-primary', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+                            }
+                            
                             htmlEl.setAttribute('data-theme', nextTheme);
                             localStorage.setItem('portfolio-theme', nextTheme);
                             
-                            // Remove transition class after animation
+                            // Force repaint for all browsers
+                            document.body.offsetHeight;
+                              // Remove transition class after animation
                             setTimeout(() => {
                                 htmlEl.classList.remove('theme-transitioning');
                             }, 300);
@@ -134,32 +175,31 @@
         
         {% block content %}{% endblock %}
     </main>    <!-- Footer -->
-    <footer class="modern-footer py-5 mt-5" style="background: var(--bg-tertiary); color: var(--text-primary); transition: all 0.3s ease;">
+    <footer class="modern-footer py-5 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <h5 class="text-gradient mb-3">
                         <i class="fas fa-code me-2"></i>Deepak Yadav
                     </h5>
-                    <p class="mb-3" style="color: var(--text-secondary);">
+                    <p class="mb-3 footer-description">
                         Crafting digital experiences through innovative solutions and clean code.
                     </p>
-                    <p class="small text-muted">&copy; 2024 Deepak Yadav. All rights reserved.</p>
+                    <p class="small footer-copyright">&copy; 2024 Deepak Yadav. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <h6 class="mb-3">Connect With Me</h6>
-                    <div class="social-links mb-3">
-                        <a href="https://github.com/deepakyadav" class="text-light me-3 interactive-hover" title="GitHub">
+                    <h6 class="mb-3 footer-heading">Connect With Me</h6>
+                    <div class="social-links mb-3">                        <a href="https://github.com/deepakyadav" class="footer-social-link me-3 interactive-hover" title="GitHub">
                             <i class="fab fa-github fa-2x"></i>
                         </a>
-                        <a href="https://linkedin.com/in/deepakyadav" class="text-light me-3 interactive-hover" title="LinkedIn">
+                        <a href="https://linkedin.com/in/deepakyadav" class="footer-social-link me-3 interactive-hover" title="LinkedIn">
                             <i class="fab fa-linkedin fa-2x"></i>
                         </a>
-                        <a href="mailto:deepak@example.com" class="text-light interactive-hover" title="Email">
+                        <a href="mailto:deepak@example.com" class="footer-social-link interactive-hover" title="Email">
                             <i class="fas fa-envelope fa-2x"></i>
                         </a>
                     </div>
-                    <p class="small text-muted">
+                    <p class="small footer-tech">
                         Built with <i class="fas fa-heart text-danger"></i> using FastAPI & Modern Web Technologies
                     </p>
                 </div>
@@ -189,12 +229,37 @@
         font-size: 0.9rem;
     " title="Back to Top">
         <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Bootstrap JS -->
+    </button>    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+    <!-- Custom JS with cache busting -->
+    <script src="{{ url_for('static', path='/js/main.js') }}?v=2.0"></script>
+    
+    <!-- Cross-browser theme compatibility script -->
+    <script>
+        // Ensure theme is properly applied across all browsers
+        document.addEventListener('DOMContentLoaded', function() {
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            
+            // Force re-apply theme for browser compatibility
+            setTimeout(() => {
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                // Trigger a reflow to ensure CSS variables are applied
+                document.body.offsetHeight;
+                
+                console.log('Theme initialized:', theme);
+            }, 50);
+            
+            // Add browser-specific class for CSS targeting
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+            const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+            
+            if (isChrome) document.body.classList.add('browser-chrome');
+            if (isFirefox) document.body.classList.add('browser-firefox');
+            if (isSafari) document.body.classList.add('browser-safari');
+        });
+    </script>
     
     {% block extra_scripts %}{% endblock %}
 </body>
