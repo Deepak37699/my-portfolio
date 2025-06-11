@@ -1,0 +1,40 @@
+[build]
+  command = "bash build.sh"
+  functions = "netlify/functions"
+  publish = "netlify/static"
+
+[build.environment]
+  PYTHON_VERSION = "3.9"
+
+[functions]
+  python_version = "3.9"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/app/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/.netlify/functions/app/admin/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/auth/*"
+  to = "/.netlify/functions/app/auth/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/static/*"
+  to = "/static/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/app"
+  status = 200
+
+[dev]
+  command = "uvicorn app.main:app --host 0.0.0.0 --port 8888"
+  port = 8888
+  publish = "static"
