@@ -1,11 +1,17 @@
 // Basic Service Worker for caching
 
-const CACHE_NAME = 'portfolio-cache-v1';
+const CACHE_NAME = 'portfolio-cache-v2';
 const urlsToCache = [
     '/',
     '/static/css/style.css',
+    '/static/css/modern-additions.css',
     '/static/js/main.js',
-    '/static/images/'
+    '/static/favicon.ico',
+    '/static/favicon.svg',
+    '/about',
+    '/projects',
+    '/skills',
+    '/contact'
 ];
 
 // Install event

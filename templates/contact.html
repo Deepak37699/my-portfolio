@@ -43,17 +43,18 @@
         opacity: 0.9;
         color: white;
     }
-    
-    .contact-section {
-        background: #f8f9fa;
+      .contact-section {
+        background: var(--bg-secondary);
         padding: 80px 0;
+        transition: background-color 0.3s ease;
     }
     
     .contact-form {
-        background: white;
+        background: var(--bg-primary);
         padding: 50px;
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
         transition: transform 0.3s ease;
     }
     
@@ -152,19 +153,18 @@
         margin-bottom: 30px;
         font-size: 1.8rem;
     }
-    
-    .contact-item {
+      .contact-item {
         display: flex;
         align-items: center;
         margin-bottom: 25px;
         padding: 20px;
-        background: #f8f9fa;
+        background: var(--bg-secondary);
         border-radius: 10px;
         transition: all 0.3s ease;
     }
     
     .contact-item:hover {
-        background: #e3f2fd;
+        background: var(--bg-tertiary);
         transform: translateX(10px);
     }
     
@@ -202,11 +202,10 @@
     .social-link {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        width: 50px;
+        justify-content: center;        width: 50px;
         height: 50px;
-        background: #f8f9fa;
-        color: #666;
+        background: var(--bg-secondary);
+        color: var(--text-secondary);
         border-radius: 50%;
         margin-right: 15px;
         text-decoration: none;
@@ -328,9 +327,8 @@
     <div class="container">
         <div class="row g-4">
             <!-- Contact Form -->
-            <div class="col-lg-8">
-                <div class="contact-form fade-in">
-                    <h2 class="mb-4" style="color: #2c3e50; font-weight: 600;">
+            <div class="col-lg-8">                <div class="contact-form fade-in">
+                    <h2 class="mb-4" style="color: var(--text-primary); font-weight: 600;">
                         <i class="fas fa-paper-plane text-primary me-3"></i>Send Me a Message
                     </h2>
                     
@@ -449,7 +447,7 @@
                     </div>
                     
                     <div class="social-links">
-                        <h5 style="color: #2c3e50; margin-bottom: 20px;">Follow Me</h5>
+                        <h5 style="color: var(--text-primary); margin-bottom: 20px;">Follow Me</h5>
                         <a href="https://linkedin.com/in/deepakyadav" target="_blank" class="social-link linkedin">
                             <i class="fab fa-linkedin"></i>
                         </a>
@@ -473,8 +471,7 @@
 <section class="py-5" style="background: white;">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+            <div class="col-12">                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-question-circle text-primary me-3"></i>Frequently Asked Questions
                 </h2>
                 

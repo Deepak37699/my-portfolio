@@ -3,10 +3,9 @@
 {% block title %}Skills - Deepak Yadav{% endblock %}
 
 {% block extra_head %}
-<style>
-    /* Additional styles for skills page */
+<style>    /* Additional styles for skills page */
     .skills-hero {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--gradient-primary);
         padding: 120px 0 80px;
         position: relative;
         overflow: hidden;
@@ -43,14 +42,12 @@
         opacity: 0.9;
         color: white;
     }
-    
-    .skills-section {
-        background: #f8f9fa;
+      .skills-section {
+        background: var(--bg-secondary);
         padding: 80px 0;
     }
-    
-    .skill-category {
-        background: white;
+      .skill-category {
+        background: var(--bg-primary);
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         margin-bottom: 40px;
@@ -61,9 +58,8 @@
     .skill-category:hover {
         transform: translateY(-5px);
     }
-    
-    .category-header {
-        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+      .category-header {
+        background: var(--gradient-primary);
         color: white;
         padding: 25px 30px;
         margin: 0;
@@ -88,18 +84,16 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 25px;
     }
-    
-    .skill-item {
-        background: #f8f9fa;
+      .skill-item {
+        background: var(--bg-secondary);
         border-radius: 10px;
         padding: 20px;
         transition: all 0.3s ease;
         border: 2px solid transparent;
     }
-    
-    .skill-item:hover {
-        background: white;
-        border-color: #3498db;
+      .skill-item:hover {
+        background: var(--bg-primary);
+        border-color: var(--primary-color);
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
@@ -110,18 +104,16 @@
         align-items: center;
         margin-bottom: 15px;
     }
-    
-    .skill-name {
+      .skill-name {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #2c3e50;
+        color: var(--text-primary);
         margin: 0;
     }
-    
-    .skill-percentage {
+      .skill-percentage {
         font-size: 1rem;
         font-weight: 600;
-        color: #3498db;
+        color: var(--primary-color);
     }
     
     .skill-info {
@@ -130,27 +122,24 @@
         align-items: center;
         margin-bottom: 15px;
     }
-    
-    .skill-experience {
+      .skill-experience {
         font-size: 0.9rem;
-        color: #666;
-        background: #e9ecef;
+        color: var(--text-secondary);
+        background: var(--bg-tertiary);
         padding: 3px 8px;
         border-radius: 12px;
     }
-    
-    .skill-progress {
+      .skill-progress {
         width: 100%;
         height: 8px;
-        background: #e9ecef;
+        background: var(--bg-tertiary);
         border-radius: 10px;
         overflow: hidden;
         margin-bottom: 15px;
     }
-    
-    .skill-progress-bar {
+      .skill-progress-bar {
         height: 100%;
-        background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+        background: var(--gradient-primary);
         border-radius: 10px;
         transition: width 1.5s ease-out;
         position: relative;
@@ -171,22 +160,19 @@
         0% { transform: translateX(-100%); }
         100% { transform: translateX(100%); }
     }
-    
-    .skill-description {
-        color: #666;
+      .skill-description {
+        color: var(--text-secondary);
         font-size: 0.9rem;
         line-height: 1.5;
     }
-    
-    .stats-overview {
-        background: white;
+      .stats-overview {
+        background: var(--bg-secondary);
         padding: 60px 0;
     }
-    
-    .stat-card {
+      .stat-card {
         text-align: center;
         padding: 30px 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--gradient-primary);
         color: white;
         border-radius: 15px;
         transition: transform 0.3s ease;
@@ -208,19 +194,19 @@
         font-size: 1rem;
         opacity: 0.9;
     }
-    
-    .proficiency-legend {
-        background: white;
+      .proficiency-legend {
+        background: var(--bg-primary);
         padding: 40px;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         margin-bottom: 40px;
+        border: 1px solid var(--border-color);
     }
     
     .legend-title {
         font-size: 1.3rem;
         font-weight: 600;
-        color: #2c3e50;
+        color: var(--text-primary);
         margin-bottom: 20px;
         text-align: center;
     }
@@ -236,7 +222,7 @@
         display: flex;
         align-items: center;
         font-size: 0.9rem;
-        color: #666;
+        color: var(--text-secondary);
     }
     
     .legend-color {
@@ -272,6 +258,27 @@
         to { width: var(--progress); }
     }
     
+    /* Progress bar color classes for different proficiency levels */
+    .progress-beginner {
+        background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%) !important;
+    }
+    
+    .progress-intermediate {
+        background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%) !important;
+    }
+    
+    .progress-advanced {
+        background: linear-gradient(90deg, #f1c40f 0%, #f39c12 100%) !important;
+    }
+    
+    .progress-expert {
+        background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%) !important;
+    }
+    
+    .progress-master {
+        background: linear-gradient(90deg, #3498db 0%, #2980b9 100%) !important;
+    }
+
     @media (max-width: 768px) {
         .skills-title {
             font-size: 2.5rem;
@@ -438,9 +445,8 @@
 <!-- Skills Summary -->
 <section class="py-5" style="background: white;">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+        <div class="row">            <div class="col-12">
+                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-chart-pie text-primary me-3"></i>Skills Distribution
                 </h2>
                 
@@ -448,8 +454,7 @@
                     {% for category, category_skills in skills|groupby('category') %}
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100 border-0 shadow-sm fade-in">
-                            <div class="card-body text-center">
-                                <div style="font-size: 3rem; color: #3498db; margin-bottom: 20px;">
+                            <div class="card-body text-center">                                        <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;">
                                     {% if category == 'Programming Language' %}
                                         <i class="fas fa-code"></i>
                                     {% elif category == 'Web Framework' %}
@@ -495,11 +500,10 @@
 </section>
 
 <!-- Top Skills Highlight -->
-<section class="py-5" style="background: #f8f9fa;">
+<section class="py-5" style="background: var(--bg-secondary);">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+            <div class="col-12">                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-star text-warning me-3"></i>Top Expertise
                 </h2>
                 
@@ -511,23 +515,23 @@
                             <div class="card-body text-center">
                                 <div style="font-size: 3rem; margin-bottom: 20px;">
                                     {% if skill.name == 'Python' %}
-                                        <i class="fab fa-python" style="color: #3776ab;"></i>
+                                        <i class="fab fa-python" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'JavaScript' %}
-                                        <i class="fab fa-js-square" style="color: #f7df1e;"></i>
+                                        <i class="fab fa-js-square" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'React' %}
-                                        <i class="fab fa-react" style="color: #61dafb;"></i>
+                                        <i class="fab fa-react" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'Node.js' %}
-                                        <i class="fab fa-node-js" style="color: #339933;"></i>
+                                        <i class="fab fa-node-js" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'Docker' %}
-                                        <i class="fab fa-docker" style="color: #2496ed;"></i>
+                                        <i class="fab fa-docker" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'HTML/CSS' %}
-                                        <i class="fab fa-html5" style="color: #e34f26;"></i>
+                                        <i class="fab fa-html5" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'Git' %}
-                                        <i class="fab fa-git-alt" style="color: #f05032;"></i>
+                                        <i class="fab fa-git-alt" style="color: var(--primary-color);"></i>
                                     {% elif skill.name == 'AWS' %}
-                                        <i class="fab fa-aws" style="color: #ff9900;"></i>
+                                        <i class="fab fa-aws" style="color: var(--primary-color);"></i>
                                     {% else %}
-                                        <i class="fas fa-code" style="color: #3498db;"></i>
+                                        <i class="fas fa-code" style="color: var(--primary-color);"></i>
                                     {% endif %}
                                 </div>
                                 <h5 class="card-title">{{ skill.name }}</h5>
@@ -547,14 +551,14 @@
 </section>
 
 <!-- Call to Action Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white;">
+<section class="py-5" style="background: var(--gradient-dark); color: white;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="display-6 mb-4 fade-in">Ready to Work Together?</h2>
                 <p class="lead mb-4 fade-in">Let's leverage these skills to build something amazing for your next project.</p>
                 <div class="fade-in">
-                    <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg me-3" style="background: linear-gradient(45deg, #3498db, #2980b9); border: none; padding: 12px 30px; border-radius: 50px;">
+                    <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg me-3" style="background: var(--gradient-primary); border: none; padding: 12px 30px; border-radius: 50px;">
                         <i class="fas fa-eye me-2"></i>View My Work
                     </a>
                     <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg" style="padding: 12px 30px; border-radius: 50px;">
@@ -604,22 +608,21 @@ function animateProgressBar(skillItem) {
     
     if (progressBar && !skillItem.classList.contains('animate')) {
         skillItem.classList.add('animate');
-        
-        // Set progress bar color based on proficiency
-        let color;
+          // Set progress bar color based on proficiency using CSS variables
+        let colorClass;
         if (proficiency <= 40) {
-            color = 'linear-gradient(90deg, #e74c3c 0%, #c0392b 100%)';
+            colorClass = 'progress-beginner';
         } else if (proficiency <= 60) {
-            color = 'linear-gradient(90deg, #f39c12 0%, #e67e22 100%)';
+            colorClass = 'progress-intermediate';
         } else if (proficiency <= 75) {
-            color = 'linear-gradient(90deg, #f1c40f 0%, #f39c12 100%)';
+            colorClass = 'progress-advanced';
         } else if (proficiency <= 90) {
-            color = 'linear-gradient(90deg, #2ecc71 0%, #27ae60 100%)';
+            colorClass = 'progress-expert';
         } else {
-            color = 'linear-gradient(90deg, #3498db 0%, #2980b9 100%)';
+            colorClass = 'progress-master';
         }
         
-        progressBar.style.background = color;
+        progressBar.className = 'skill-progress-bar ' + colorClass;
         
         // Animate width
         setTimeout(() => {

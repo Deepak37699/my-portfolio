@@ -4,9 +4,8 @@
 
 {% block extra_head %}
 <style>
-    /* Additional styles for about page */
-    .about-hero {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Additional styles for about page */    .about-hero {
+        background: var(--gradient-primary);
         padding: 120px 0 80px;
         position: relative;
         overflow: hidden;
@@ -53,8 +52,7 @@
     .profile-image {
         width: 300px;
         height: 300px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;        background: var(--gradient-primary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,9 +72,8 @@
     }
     
     .bio-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #666;
+        font-size: 1.1rem;        line-height: 1.8;
+        color: var(--text-secondary);
         margin-bottom: 2rem;
     }
     
@@ -108,10 +105,10 @@
         color: #3498db;
         margin-right: 15px;
     }
-    
-    .contact-info {
-        background: #f8f9fa;
+      .contact-info {
+        background: var(--bg-secondary);
         padding: 80px 0;
+        transition: background-color 0.3s ease;
     }
     
     .contact-item {
@@ -280,7 +277,7 @@
             </div>
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h2 class="display-5 mb-4" style="color: #2c3e50; font-weight: 600;">{{ about.name }}</h2>
+                    <h2 class="display-5 mb-4" style="color: var(--text-primary); font-weight: 600;">{{ about.name }}</h2>
                     <h3 class="h4 text-primary mb-4">{{ about.title }}</h3>
                     <p class="bio-text">{{ about.bio }}</p>
                     
@@ -396,9 +393,8 @@
 <!-- Experience Section -->
 <section class="py-5" style="background: white;">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+        <div class="row">            <div class="col-12">
+                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-briefcase text-primary me-3"></i>Experience
                 </h2>
                 
@@ -423,11 +419,11 @@
 </section>
 
 <!-- Education Section -->
-<section class="py-5" style="background: #f8f9fa;">
+<section class="py-5" style="background: var(--bg-secondary); transition: background-color 0.3s ease;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-graduation-cap text-primary me-3"></i>Education
                 </h2>
                 
@@ -455,8 +451,7 @@
 <section class="py-5" style="background: white;">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+            <div class="col-12">                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-certificate text-primary me-3"></i>Certifications
                 </h2>
                 
@@ -489,11 +484,11 @@
 </section>
 
 <!-- Languages Section -->
-<section class="py-5" style="background: #f8f9fa;">
+<section class="py-5" style="background: var(--bg-secondary); transition: background-color 0.3s ease;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-language text-primary me-3"></i>Languages
                 </h2>
                 

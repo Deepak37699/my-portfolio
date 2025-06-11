@@ -3,10 +3,9 @@
 {% block title %}Deepak Yadav - Full Stack Developer & Software Engineer{% endblock %}
 
 {% block extra_head %}
-<style>
-    /* Additional styles for landing page */
+<style>    /* Additional styles for landing page */
     .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--gradient-primary);
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -49,9 +48,8 @@
         max-width: 600px;
         opacity: 0.8;
     }
-    
-    .btn-primary-custom {
-        background: linear-gradient(45deg, #3498db, #2980b9);
+      .btn-primary-custom {
+        background: var(--gradient-accent);
         border: none;
         padding: 12px 30px;
         font-size: 1.1rem;
@@ -64,7 +62,8 @@
     .btn-primary-custom:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-        background: linear-gradient(45deg, #2980b9, #3498db);
+        background: var(--gradient-accent);
+        filter: brightness(1.1);
     }
     
     .btn-outline-custom {
@@ -84,9 +83,8 @@
         color: white;
         transform: translateY(-2px);
     }
-    
-    .stats-section {
-        background: white;
+      .stats-section {
+        background: var(--bg-primary);
         padding: 80px 0;
         box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
     }
@@ -99,26 +97,25 @@
     .stat-number {
         font-size: 3rem;
         font-weight: 700;
-        color: #3498db;
+        color: var(--primary-color);
         display: block;
     }
     
     .stat-label {
         font-size: 1.1rem;
-        color: #666;
+        color: var(--text-secondary);
         font-weight: 500;
     }
-    
-    .features-section {
-        background: #f8f9fa;
+      .features-section {
+        background: var(--bg-secondary);
         padding: 100px 0;
     }
     
     .feature-card {
-        background: white;
+        background: var(--bg-primary);
         padding: 40px 30px;
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-lg);
         transition: all 0.3s ease;
         text-align: center;
         height: 100%;
@@ -127,12 +124,12 @@
     
     .feature-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-xl);
     }
     
     .feature-icon {
         font-size: 3rem;
-        color: #3498db;
+        color: var(--primary-color);
         margin-bottom: 20px;
     }
     
@@ -140,16 +137,15 @@
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 15px;
-        color: #2c3e50;
+        color: var(--text-primary);
     }
     
     .feature-description {
-        color: #666;
+        color: var(--text-secondary);
         line-height: 1.6;
     }
-    
-    .cta-section {
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      .cta-section {
+        background: var(--gradient-dark);
         color: white;
         padding: 100px 0;
         text-align: center;
@@ -239,7 +235,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,19 +273,19 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <div class="hero-content fade-in">
-                    <h1 class="hero-title">Hi, I'm <span style="color: #ffd700;">Deepak Yadav</span></h1>
-                    <p class="hero-subtitle">Full Stack Developer & Software Engineer</p>
+                <div class="hero-content fade-in">                    <h1 class="hero-title">Hi, I'm <span style="color: var(--accent-color);">Deepak Yadav</span></h1>
+                    <p class="hero-subtitle">
+                        <span class="typing-text">Full Stack Developer</span>
+                    </p>
                     <p class="hero-description">
                         I craft digital experiences through clean code and innovative solutions. 
                         With 5+ years of expertise in Python, FastAPI, and modern web technologies, 
                         I transform ideas into scalable, user-centric applications.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ url_for('projects') }}" class="btn btn-primary-custom">
+                    </p>                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ url_for('projects') }}" class="btn btn-primary-custom btn-modern">
                             <i class="fas fa-rocket me-2"></i>View My Work
                         </a>
-                        <a href="{{ url_for('contact') }}" class="btn btn-outline-custom">
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-custom btn-modern">
                             <i class="fas fa-envelope me-2"></i>Get In Touch
                         </a>
                     </div>
@@ -316,28 +312,27 @@
 <!-- Stats Section -->
 <section id="stats" class="stats-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 mb-4">
+        <div class="row">            <div class="col-md-3 col-sm-6 mb-4">
                 <div class="stat-item fade-in">
-                    <span class="stat-number">5+</span>
+                    <span class="stat-number" data-count="5">0</span><span class="stat-number">+</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="stat-item fade-in">
-                    <span class="stat-number">50+</span>
+                    <span class="stat-number" data-count="50">0</span><span class="stat-number">+</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="stat-item fade-in">
-                    <span class="stat-number">20+</span>
+                    <span class="stat-number" data-count="20">0</span><span class="stat-number">+</span>
                     <span class="stat-label">Technologies Mastered</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="stat-item fade-in">
-                    <span class="stat-number">100%</span>
+                    <span class="stat-number" data-count="100">0</span><span class="stat-number">%</span>
                     <span class="stat-label">Client Satisfaction</span>
                 </div>
             </div>
@@ -350,14 +345,13 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h2 class="display-4 mb-3 fade-in" style="color: #2c3e50; font-weight: 600;">What I Do Best</h2>
+                <h2 class="display-4 mb-3 fade-in" style="color: var(--text-primary); font-weight: 600;">What I Do Best</h2>
                 <p class="lead text-muted fade-in">Specializing in cutting-edge technologies to deliver exceptional results</p>
             </div>
         </div>
         
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card feature-card fade-in">
+        <div class="row g-4">            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card card-modern fade-in interactive-hover">
                     <div class="feature-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -370,7 +364,7 @@
             </div>
             
             <div class="col-lg-4 col-md-6">
-                <div class="card feature-card fade-in">
+                <div class="card feature-card card-modern fade-in interactive-hover">
                     <div class="feature-icon">
                         <i class="fas fa-palette"></i>
                     </div>
@@ -383,7 +377,7 @@
             </div>
             
             <div class="col-lg-4 col-md-6">
-                <div class="card feature-card fade-in">
+                <div class="card feature-card card-modern fade-in interactive-hover">
                     <div class="feature-icon">
                         <i class="fas fa-database"></i>
                     </div>

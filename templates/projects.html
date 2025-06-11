@@ -445,9 +445,8 @@
 <!-- Technology Overview Section -->
 <section class="py-5" style="background: white;">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="display-5 mb-5 text-center fade-in" style="color: #2c3e50; font-weight: 600;">
+        <div class="row">            <div class="col-12">
+                <h2 class="display-5 mb-5 text-center fade-in" style="color: var(--text-primary); font-weight: 600;">
                     <i class="fas fa-cogs text-primary me-3"></i>Technologies Used
                 </h2>
                 
@@ -456,8 +455,8 @@
                     {% set unique_techs = all_techs|unique|list %}
                     {% for tech in unique_techs %}
                     <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
-                        <div class="text-center p-3 tech-item fade-in" style="background: #f8f9fa; border-radius: 10px; transition: all 0.3s ease;">
-                            <div style="font-size: 2rem; margin-bottom: 10px; color: #3498db;">
+                        <div class="text-center p-3 tech-item fade-in" style="background: var(--bg-secondary); border-radius: 10px; transition: all 0.3s ease;">
+                            <div style="font-size: 2rem; margin-bottom: 10px; color: var(--primary-color);">
                                 {% if tech == 'Python' %}
                                     <i class="fab fa-python"></i>
                                 {% elif tech == 'JavaScript' %}
@@ -476,7 +475,7 @@
                                     <i class="fas fa-code"></i>
                                 {% endif %}
                             </div>
-                            <h6 class="mb-0" style="font-weight: 600; color: #2c3e50;">{{ tech }}</h6>
+                            <h6 class="mb-0" style="font-weight: 600; color: var(--text-primary);">{{ tech }}</h6>
                             <small class="text-muted">{{ all_techs|select("equalto", tech)|list|length }} projects</small>
                         </div>
                     </div>
@@ -488,7 +487,7 @@
 </section>
 
 <!-- Call to Action Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white;">
+<section class="py-5" style="background: var(--gradient-dark); color: white;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
