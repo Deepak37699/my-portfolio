@@ -41,16 +41,31 @@ app.add_middleware(
 
 # Set up static files
 static_dir = Path(os.getenv("STATIC_DIR", "static"))
+# In serverless environment, look for static files relative to the function
+if not static_dir.exists():
+    static_dir = Path(__file__).parent.parent / "static"
+if not static_dir.exists():
+    static_dir = Path(__file__).parent / "static"
+
 if static_dir.exists():
     app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+    logger.info(f"Static files mounted from: {static_dir}")
 
 # Set up templates
 templates_dir = Path(os.getenv("TEMPLATES_DIR", "templates"))
+# In serverless environment, look for templates relative to the function
+if not templates_dir.exists():
+    templates_dir = Path(__file__).parent.parent / "templates"
+if not templates_dir.exists():
+    templates_dir = Path(__file__).parent / "templates"
+
 if templates_dir.exists():
     templates = Jinja2Templates(directory=str(templates_dir))
-    
     # Make templates available to routes
     app.state.templates = templates
+    logger.info(f"Templates loaded from: {templates_dir}")
+else:
+    logger.warning(f"Templates directory not found. Looked in: {templates_dir}")
 
 # Include routers
 app.include_router(portfolio.router, tags=["Portfolio"])

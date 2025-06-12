@@ -24,6 +24,7 @@ echo "Copying application files..."
 cp -r app netlify/functions/
 cp -r data netlify/functions/
 cp -r templates netlify/functions/
+cp -r static netlify/functions/
 
 # Copy root files needed for the application
 echo "Copying additional files..."
@@ -33,6 +34,17 @@ cp requirements.txt netlify/functions/
 if [ -f ".env.production" ]; then
     echo "Setting up production environment..."
     cp .env.production netlify/functions/.env
+fi
+
+# Ensure the function has all dependencies
+echo "Copying function requirements..."
+if [ -f "netlify/functions/requirements.txt" ]; then
+    # Merge requirements if they exist in functions directory
+    cat requirements.txt >> netlify/functions/requirements.txt
+    sort netlify/functions/requirements.txt | uniq > netlify/functions/requirements_temp.txt
+    mv netlify/functions/requirements_temp.txt netlify/functions/requirements.txt
+else
+    cp requirements.txt netlify/functions/requirements.txt
 fi
 
 # Create a simple index.html for the static directory

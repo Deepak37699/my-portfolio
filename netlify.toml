@@ -10,7 +10,7 @@
   from = "/*"
   to = "/.netlify/functions/main/:splat"
   status = 200
-  force = false
+  force = true
 
 [functions]
   directory = "netlify/functions"
