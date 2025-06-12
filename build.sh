@@ -26,6 +26,147 @@ cp -r data netlify/functions/
 cp -r templates netlify/functions/
 cp -r static netlify/functions/
 
+# Create Netlify function files
+echo "Creating Netlify function files..."
+
+# Create main.py function
+cat > netlify/functions/main.py << 'EOF'
+"""
+Netlify Functions entry point for FastAPI application
+"""
+import sys
+import os
+import json
+from pathlib import Path
+
+# Add the current directory to Python path for local imports
+current_dir = Path(__file__).parent
+sys.path.insert(0, str(current_dir))
+
+def handler(event, context):
+    """
+    Netlify Functions entry point (note: function name must be 'handler')
+    """
+    debug_info = {
+        'method': event.get('httpMethod', 'Unknown'),
+        'path': event.get('path', '/'),
+        'working_directory': os.getcwd(),
+        'python_path': sys.path[:3]
+    }
+    
+    try:
+        # Import FastAPI app and Mangum
+        from app.main import app
+        from mangum import Mangum
+        
+        # Create the Netlify-compatible handler with proper settings
+        mangum_handler = Mangum(
+            app, 
+            lifespan="off",
+            text_mime_types=[
+                "application/json",
+                "application/javascript", 
+                "application/xml",
+                "application/vnd.api+json",
+            ],
+        )
+        
+        return mangum_handler(event, context)
+        
+    except ImportError as e:
+        import traceback
+        error_msg = f"Import error: {e}\nTraceback: {traceback.format_exc()}"
+        print(error_msg)
+        return {
+            'statusCode': 500,
+            'headers': {'Content-Type': 'text/html'},
+            'body': f'''<!DOCTYPE html>
+<html>
+<head><title>Import Error</title></head>
+<body>
+<h1>Import Error</h1>
+<pre>{error_msg}</pre>
+<p>Current directory: {os.getcwd()}</p>
+<p>Python path: {sys.path[:5]}</p>
+<p>Debug info: {json.dumps(debug_info, indent=2)}</p>
+</body>
+</html>'''
+        }
+    except Exception as e:
+        import traceback
+        error_msg = f"General error: {e}\nTraceback: {traceback.format_exc()}"
+        print(error_msg)
+        return {
+            'statusCode': 500,
+            'headers': {'Content-Type': 'text/html'},
+            'body': f'''<!DOCTYPE html>
+<html>
+<head><title>Server Error</title></head>
+<body>
+<h1>Server Error</h1>
+<pre>{error_msg}</pre>
+<p>Debug info: {json.dumps(debug_info, indent=2)}</p>
+</body>
+</html>'''
+        }
+EOF
+
+# Create test.py function
+cat > netlify/functions/test.py << 'EOF'
+def handler(event, context):
+    """
+    Simple test function to verify Netlify Functions are working
+    """
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify Function Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .success {
+            color: #4ade80;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">✅</div>
+        <h1>Netlify Function Working!</h1>
+        <p>This simple test function is running correctly.</p>
+        <p><strong>Event:</strong> ''' + str(event.get('httpMethod', 'Unknown')) + ''' ''' + str(event.get('path', '/')) + '''</p>
+        <p><strong>Next:</strong> <a href="/.netlify/functions/main" style="color: white;">Try FastAPI Function</a></p>
+    </div>
+</body>
+</html>'''
+    }
+EOF
+
 # Copy root files needed for the application
 echo "Copying additional files..."
 cp requirements.txt netlify/functions/
