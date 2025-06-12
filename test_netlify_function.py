@@ -32,9 +32,27 @@ def test_function():
                 "host": "localhost:8000",
                 "user-agent": "test-agent"
             },
+            "multiValueHeaders": {
+                "accept": ["text/html"]
+            },
             "queryStringParameters": None,
+            "multiValueQueryStringParameters": None,
             "body": None,
-            "isBase64Encoded": False
+            "isBase64Encoded": False,
+            "resource": "/",
+            "stageVariables": None,
+            "requestContext": {
+                "accountId": "123456789012",
+                "resourceId": "123456",
+                "stage": "test",
+                "requestId": "test-request-id",
+                "identity": {
+                    "sourceIp": "127.0.0.1",
+                    "userAgent": "test-agent"
+                },
+                "resourcePath": "/",
+                "httpMethod": "GET"
+            }
         }
         
         mock_context = {
