@@ -4,11 +4,11 @@
   publish = "netlify/static"
 
 [build.environment]
-  PYTHON_VERSION = "3.11"
+  PYTHON_VERSION = "3.8"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/main"
+  to = "/.netlify/functions/main/:splat"
   status = 200
   force = true
 
@@ -16,4 +16,4 @@
   directory = "netlify/functions"
 
 [functions.main]
-  runtime = "python3.11"
+  runtime = "python3.8"
