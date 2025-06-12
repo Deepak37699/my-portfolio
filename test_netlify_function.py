@@ -6,15 +6,23 @@ import sys
 import os
 from pathlib import Path
 
-# Add netlify functions directory to path
-functions_dir = Path(__file__).parent / "netlify" / "functions"
-sys.path.insert(0, str(functions_dir))
-
 def test_function():
     """Test the Netlify function locally"""
     try:
-        # Import the handler
-        from main import handler
+        # Add netlify functions directory to path
+        functions_dir = Path(__file__).parent / "netlify" / "functions"
+        sys.path.insert(0, str(functions_dir))
+        
+        # Change to functions directory
+        original_cwd = os.getcwd()
+        os.chdir(str(functions_dir))
+        
+        # Import the handler (suppress IDE warning - this works at runtime)
+        import main  # type: ignore
+        handler = main.handler
+        
+        # Restore original directory
+        os.chdir(original_cwd)
         
         # Create a mock event and context (similar to what Netlify sends)
         mock_event = {
