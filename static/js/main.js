@@ -1259,7 +1259,7 @@ window.addEventListener('error', function(e) {
 // Service Worker registration (for future PWA features)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/static/sw.js')
             .then(registration => {
                 console.log('ServiceWorker registration successful');
             })

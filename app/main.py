@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pathlib import Path
 import os
 import logging
@@ -55,6 +56,14 @@ if templates_dir.exists():
 app.include_router(portfolio.router, tags=["Portfolio"])
 app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(admin.router, prefix="/admin", tags=["Admin"])
+
+@app.get("/sw.js")
+async def service_worker():
+    """Serve the service worker file from root path."""
+    sw_path = Path("static/sw.js")
+    if sw_path.exists():
+        return FileResponse(sw_path, media_type="application/javascript")
+    return {"detail": "Service worker not found"}
 
 @app.on_event("startup")
 async def startup_event():

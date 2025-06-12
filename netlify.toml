@@ -1,0 +1,19 @@
+[build]
+  command = "bash build.sh"
+  functions = "netlify/functions"
+  publish = "netlify/static"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/main/:splat"
+  status = 200
+  force = false
+
+[functions]
+  directory = "netlify/functions"
+
+[functions.main]
+  runtime = "python3.11"

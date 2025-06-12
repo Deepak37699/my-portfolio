@@ -113,4 +113,7 @@ docker-compose.override.yml
 static/dist/
 static/build/
 
+# Netlify build output
+netlify/
+
 DYNAMIC_HEADING_FIX_SUMMARY.md
