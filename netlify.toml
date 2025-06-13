@@ -17,6 +17,17 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/api"
+  to = "/.netlify/functions/api"
+  status = 200
+
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/.netlify/functions/portfolio/:splat"
+  status = 200
+  force = true
+
 [functions]
   directory = "netlify/functions"
 
