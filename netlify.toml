@@ -3,9 +3,6 @@
   functions = "netlify/functions"
   publish = "netlify/static"
 
-[build.environment]
-  PYTHON_VERSION = "3.8"
-
 # Simple redirect for the API test endpoint
 [[redirects]]
   from = "/api"

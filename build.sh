@@ -26,6 +26,74 @@ cp -r data netlify/functions/
 cp -r templates netlify/functions/
 cp -r static netlify/functions/
 
+# Create simple JavaScript Netlify function files
+echo "Creating JavaScript Netlify function files..."
+
+# Create api.js function
+cat > netlify/functions/api.js << 'EOF'
+// Simple API handler for Netlify Functions
+exports.handler = async function(event, context) {
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    },
+    body: JSON.stringify({
+      message: "API function working!",
+      status: "success",
+      timestamp: new Date().toISOString()
+    })
+  };
+};
+EOF
+
+# Create index.js function
+cat > netlify/functions/index.js << 'EOF'
+// Simple index handler for Netlify Functions
+exports.handler = async function(event, context) {
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "text/html"
+    },
+    body: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Netlify Functions Test</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+            }
+            pre {
+              background: #f4f4f4;
+              padding: 10px;
+              border-radius: 5px;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Netlify Functions Test</h1>
+          <p>This is a JavaScript function responding to your request.</p>
+          
+          <h2>Request Details:</h2>
+          <pre>
+Path: \${event.path}
+Method: \${event.httpMethod}
+          </pre>
+          
+          <p><a href="/api">Test the API endpoint</a></p>
+        </body>
+      </html>
+    `
+  };
+};
+EOF
+
 # Create Netlify function files
 echo "Creating Netlify function files..."
 
