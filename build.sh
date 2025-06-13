@@ -29,6 +29,71 @@ cp -r static netlify/functions/
 # Create Netlify function files
 echo "Creating Netlify function files..."
 
+# Create api.py function (simple JSON endpoint)
+cat > netlify/functions/api.py << 'EOF'
+def handler(event, context):
+    """
+    Simple API test function for Netlify
+    """
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': '{"message": "API function working!", "status": "success"}'
+    }
+EOF
+
+# Create index.py function (main entry point)
+cat > netlify/functions/index.py << 'EOF'
+import json
+import os
+
+def handler(event, context):
+    """
+    Simple index function for Netlify
+    """
+    path = event.get('path', '/')
+    http_method = event.get('httpMethod', 'GET')
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': f"""<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio App</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }}
+        pre {{ background: #f4f4f4; padding: 10px; border-radius: 5px; }}
+    </style>
+</head>
+<body>
+    <h1>Portfolio Application</h1>
+    <p>This is a simple Netlify Function responding to your request.</p>
+    
+    <h2>Request Details:</h2>
+    <pre>
+Path: {path}
+Method: {http_method}
+    </pre>
+    
+    <h2>Environment:</h2>
+    <pre>
+Python Path: {os.environ.get('PYTHONPATH', 'Not set')}
+Working Directory: {os.getcwd()}
+    </pre>
+    
+    <p><a href="/api">Test the API endpoint</a></p>
+</body>
+</html>"""
+    }
+EOF
+
 # Create main.py function
 cat > netlify/functions/main.py << 'EOF'
 """
